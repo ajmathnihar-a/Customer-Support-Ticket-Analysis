@@ -85,7 +85,7 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 
 ## Dashboard Preview
 
-![Customer Support Ticket Analysis Dashboard](customer_support_tickets.png)
+![Customer Support Ticket Analysis Dashboard](customer%20support%20tickets.png)
 
 ## Key Outcomes
 

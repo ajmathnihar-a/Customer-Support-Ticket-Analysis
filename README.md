@@ -86,7 +86,7 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 
 ## Dashboard Preview
 
-![Customer Support Ticket Analysis Dashboard](customer%20support%20tickets.png)
+![Customer Support Ticket Analysis Dashboard]()
 
 ## Definitions
 - **Resolved:** status is Closed
@@ -102,5 +102,4 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 - **Support channels:** Email had the most tickets (2,143) and Chat the fewest (2,073), a relatively even distribution.
 - **Ticket types:** All five types (refund requests, technical issues, cancellation requests, product inquiries, billing inquiries) each made up about 19% to 21% of tickets, so no single issue type dominates.
 
-*Note: This is a practice dataset, so the very even distributions may not reflect a real support team.*
 

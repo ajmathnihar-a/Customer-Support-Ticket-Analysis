@@ -77,12 +77,12 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 
 ### Key DAX Measures
 
- **Total Tickets:** Counts all tickets.
- **Unresolved Tickets:** Counts tickets whose status is not Closed (Open + Pending Customer Response).
- **Resolution Rate %:** Proportion of tickets with status Closed.
- **SLA Compliance %:** Proportion of eligible tickets meeting the defined first-response threshold.
- **Waiting on Support / Waiting on Customer:** Splits unresolved tickets by who the ticket is waiting on.
- **Average Satisfaction:** Average customer satisfaction rating.
+* **Total Tickets:** Counts all tickets.
+* **Unresolved Tickets:** Counts tickets whose status is not Closed (Open + Pending Customer Response).
+* **Resolution Rate %:** Proportion of tickets with status Closed.
+* **SLA Compliance %:** Proportion of eligible tickets meeting the defined first-response threshold.
+* **Waiting on Support / Waiting on Customer:** Splits unresolved tickets by who the ticket is waiting on.
+* **Average Satisfaction:** Average customer satisfaction rating.
 
 ## Dashboard Preview
 
@@ -101,5 +101,4 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 - **Priority:** Resolution rate (31.2% to 34.1%) and SLA compliance (48.2% to 51.0%) were nearly flat across priority levels. Critical tickets had the lowest SLA compliance at 48.2%, suggesting triage and escalation rules need review.
 - **Support channels:** Email had the most tickets (2,143) and Chat the fewest (2,073), a relatively even distribution.
 - **Ticket types:** All five types (refund requests, technical issues, cancellation requests, product inquiries, billing inquiries) each made up about 19% to 21% of tickets, so no single issue type dominates.
-
 

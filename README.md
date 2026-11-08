@@ -27,7 +27,7 @@ I used Excel for basic data cleaning, Power Query for data type corrections and 
 
 * Performed basic data cleaning in Excel.
 * Corrected data types in Power Query.
-* Created a conditional column to classify tickets into Pending and Resolved categories.
+* Created conditional columns in Power Query to classify tickets as **Resolved** (Closed), **Waiting on Support** (Open) or **Waiting on Customer** (Pending Customer Response).
 
 ## SQL Analysis
 
@@ -77,20 +77,30 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 
 ### Key DAX Measures
 
-* **Average Satisfaction:** Calculates the average customer satisfaction rating.
-* **High Priority %:** Calculates the proportion of tickets classified as high priority.
-* **Open/Unresolved Tickets:** Counts tickets whose status is not Closed.
-* **Resolution Rate %:** Calculates the proportion of tickets classified as Resolved.
-* **SLA Compliance %:** Calculates the proportion of eligible tickets meeting the defined first-response threshold.
+ **Total Tickets:** Counts all tickets.
+ **Unresolved Tickets:** Counts tickets whose status is not Closed (Open + Pending Customer Response).
+ **Resolution Rate %:** Proportion of tickets with status Closed.
+ **SLA Compliance %:** Proportion of eligible tickets meeting the defined first-response threshold.
+ **Waiting on Support / Waiting on Customer:** Splits unresolved tickets by who the ticket is waiting on.
+ **Average Satisfaction:** Average customer satisfaction rating.
 
 ## Dashboard Preview
 
 ![Customer Support Ticket Analysis Dashboard](customer%20support%20tickets.png)
 
-## Key Outcomes
+## Definitions
+- **Resolved:** status is Closed
+- **Unresolved:** status is Open or Pending Customer Response
+- **Waiting on Support:** Open tickets
+- **Waiting on Customer:** Pending Customer Response tickets
 
-* **Unresolved Ticket Backlog:** Identified 5,700 unresolved tickets, representing 67.3% of the 8,469 total tickets. This highlights the need to investigate resolution delays and prioritize outstanding cases.
-* **SLA Compliance:** Measured first-response SLA compliance at 50%, highlighting a potential gap against the defined service-level target. 
-* **Support Channel Analysis:** Compared ticket volumes across Email, Phone, Social Media, and Chat. Email recorded the highest volume at 2,143 tickets, while Chat recorded the lowest at 2,073, showing a relatively even distribution across channels.
-* **Ticket Type Analysis:** Compared support request volumes across refunds, technical issues, billing, and product inquiries to identify the categories generating customer support demand.
+## Key Outcomes
+- **Unresolved backlog:** 5,700 of 8,469 tickets (67.3%) were not yet closed.
+- **Who the backlog is waiting on:** 2,819 tickets (33.3% of all tickets) were waiting on the support team and 2,881 (34.0%) on customer responses, so the true team backlog was about one third of total volume.
+- **SLA compliance:** First-response SLA compliance was 49.9%, and the resolution rate was 32.7%.
+- **Priority:** Resolution rate (31.2% to 34.1%) and SLA compliance (48.2% to 51.0%) were nearly flat across priority levels. Critical tickets had the lowest SLA compliance at 48.2%, suggesting triage and escalation rules need review.
+- **Support channels:** Email had the most tickets (2,143) and Chat the fewest (2,073), a relatively even distribution.
+- **Ticket types:** All five types (refund requests, technical issues, cancellation requests, product inquiries, billing inquiries) each made up about 19% to 21% of tickets, so no single issue type dominates.
+
+*Note: This is a practice dataset, so the very even distributions may not reflect a real support team.*
 

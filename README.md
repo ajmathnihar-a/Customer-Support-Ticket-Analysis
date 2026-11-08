@@ -86,7 +86,7 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 
 ## Dashboard Preview
 
-![Customer Support Ticket Analysis Dashboard]()
+![Customer Support Ticket Analysis Dashboard](Customer%20Support%20Tickets.png)
 
 ## Definitions
 - **Resolved:** status is Closed

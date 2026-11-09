@@ -9,13 +9,12 @@ I used Excel for basic data cleaning, Power Query for data type corrections and 
 ## Business Problems
 
 * How many support tickets were received, and how many remain unresolved?
+* How many unresolved tickets are waiting on the support team versus the customer?
 * Which support channels receive the highest number of tickets?
-* Which ticket subcategories generate the most support requests?
-* How does customer satisfaction vary across ticket priority levels?
-* How many high-priority tickets remain unresolved?
+* Which ticket types generate the most support requests?
 * What percentage of tickets are resolved, and how well does the support team meet its SLA target?
-* Are there noticeable changes or spikes in ticket volume over time?
-
+* Do resolution rate and SLA compliance differ across ticket priority levels?
+  
 ## Tools & Technologies
 
 * **Excel:** Basic data cleaning and preparation
@@ -31,7 +30,7 @@ I used Excel for basic data cleaning, Power Query for data type corrections and 
 
 ## SQL Analysis
 
-Used PostgreSQL to analyze ticket volume, customer satisfaction, ticket priorities, and ticket trends.
+Used PostgreSQL to analyze ticket volume, customer satisfaction, ticket priorities, and daily ticket volume (based on the dataset's date_of_purchase field).
 
 ### 1. Ticket Volume by Support Channel
 
@@ -69,6 +68,23 @@ select ticket_channel,ticket_sub,dense_rank() over(partition by ticket_channel o
 from cte
 ```
 
+### 4. Ticket Status Breakdown
+
+Splits tickets into Resolved, Waiting on Support, and Waiting on Customer, with each group's share of the total.
+
+```sql
+select
+    case when ticket_status = 'Closed' then 'Resolved'
+         when ticket_status = 'Open' then 'Waiting on Support'
+         when ticket_status = 'Pending Customer Response' then 'Waiting on Customer'
+    end as status_group,
+    count(ticket_id) as tot_tickets,
+    round(100.0 * count(ticket_id) / sum(count(ticket_id)) over (), 1) as pct_of_total
+from customer_support_tickets
+group by 1
+order by tot_tickets desc;
+```
+
 Additional SQL analysis included high-priority unresolved ticket tracking, data quality checks, customer segmentation, moving averages, and ticket volume comparisons using `LAG()`. The complete queries are available in the SQL file in this repository.
 
 ## Power BI Dashboard
@@ -89,16 +105,17 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 ![Customer Support Ticket Analysis Dashboard](Customer%20Support%20Tickets.png)
 
 ## Definitions
-- **Resolved:** status is Closed
-- **Unresolved:** status is Open or Pending Customer Response
-- **Waiting on Support:** Open tickets
-- **Waiting on Customer:** Pending Customer Response tickets
+* **Resolved:** status is Closed
+* **Unresolved:** status is Open or Pending Customer Response
+* **Waiting on Support:** Open tickets
+* **Waiting on Customer:** Pending Customer Response tickets
 
 ## Key Outcomes
-- **Unresolved backlog:** 5,700 of 8,469 tickets (67.3%) were not yet closed.
-- **Who the backlog is waiting on:** 2,819 tickets (33.3% of all tickets) were waiting on the support team and 2,881 (34.0%) on customer responses, so the true team backlog was about one third of total volume.
-- **SLA compliance:** First-response SLA compliance was 49.9%, and the resolution rate was 32.7%.
-- **Priority:** Resolution rate (31.2% to 34.1%) and SLA compliance (48.2% to 51.0%) were nearly flat across priority levels. Critical tickets had the lowest SLA compliance at 48.2%, suggesting triage and escalation rules need review.
-- **Support channels:** Email had the most tickets (2,143) and Chat the fewest (2,073), a relatively even distribution.
-- **Ticket types:** All five types (refund requests, technical issues, cancellation requests, product inquiries, billing inquiries) each made up about 19% to 21% of tickets, so no single issue type dominates.
+* **Unresolved backlog:** 5,700 of 8,469 tickets (67.3%) were not yet closed.
+* **Who the backlog is waiting on:** 2,819 tickets (33.3% of all tickets) were waiting on the support team and 2,881 (34.0%) on customer responses, so the true team backlog was about one third of total volume.
+* **SLA compliance:** First-response SLA compliance was 49.9%, and the resolution rate was 32.7%.
+* **Priority:** Resolution rate (31.2% to 34.1%) and SLA compliance (48.2% to 51.0%) were nearly flat across priority levels. Critical tickets had the lowest SLA compliance at 48.2%, which may indicate that triage and escalation rules need review.
+* **Support channels:** Email had the most tickets (2,143) and Chat the fewest (2,073), a relatively even distribution.
+* **Ticket types:** All five types (refund requests, technical issues, cancellation requests, product inquiries, billing inquiries) each made up about 19% to 21% of tickets, so no single issue type dominates.
+* **Customer satisfaction:** Average satisfaction was nearly identical across priority levels, ranging from 2.96 (Critical) to 3.05 (Low), so priority had little visible effect on customer experience.
 

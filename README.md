@@ -6,6 +6,10 @@ This project analyzes customer support ticket data to understand ticket volume, 
 
 I used Excel for basic data cleaning, Power Query for data type corrections and ticket status classification, PostgreSQL for SQL analysis, and Power BI to create DAX measures and an interactive dashboard.
 
+## Dashboard Preview
+
+![Customer Support Ticket Analysis Dashboard](Customer%20Support%20Tickets.png)
+
 ## Business Problems
 
 * How many support tickets were received, and how many remain unresolved?
@@ -100,9 +104,6 @@ Developed an interactive dashboard to monitor customer support ticket volume, ti
 * **Waiting on Support / Waiting on Customer:** Splits unresolved tickets by who the ticket is waiting on.
 * **Average Satisfaction:** Average customer satisfaction rating.
 
-## Dashboard Preview
-
-![Customer Support Ticket Analysis Dashboard](Customer%20Support%20Tickets.png)
 
 ## Definitions
 * **Resolved:** status is Closed
